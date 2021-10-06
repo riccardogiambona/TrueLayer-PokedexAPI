@@ -10,6 +10,7 @@ using Refit;
 using PokeAPI.Views.Responses;
 using PokeAPI.Interfaces;
 using Newtonsoft.Json;
+using FunTranslationsAPI.Interfaces;
 
 namespace PokedexAPI
 {
@@ -25,7 +26,26 @@ namespace PokedexAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var mapperConfig = new MapperConfiguration(mc =>
+            var mapperConfig = GetMapperConfiguration();
+            var mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+            services.AddControllers()
+                .AddNewtonsoftJson();
+
+            var refitSettings = new RefitSettings()
+            {
+                ContentSerializer = new NewtonsoftJsonContentSerializer(new JsonSerializerSettings())
+            };
+
+            services.AddRefitClient<IPokeApi>(refitSettings)
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri(Configuration.GetSection("ExternalApis:PokeApiBaseUrl").Value));
+            services.AddRefitClient<ITranslationsApi>(refitSettings)
+                .ConfigureHttpClient(c => c.BaseAddress = new Uri(Configuration.GetSection("ExternalApis:FunTranslationsApiBaseUrl").Value));
+        }
+
+        private MapperConfiguration GetMapperConfiguration()
+        {
+            return new MapperConfiguration(mc =>
             {
                 //Mapping for PokeApiPokemonSpecies attributes
                 mc.CreateMap<PokeApiPokemonSpeciesRespDto, PokemonInfoRespDto>()
@@ -48,15 +68,6 @@ namespace PokedexAPI
                 mc.CreateMap<PokeAPI.Views.Responses.Variety, Views.Responses.Variety>();
                 mc.CreateMap<PokeAPI.Views.Responses.Version, Views.Responses.Version>();
             });
-            var mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
-            services.AddControllers()
-                .AddNewtonsoftJson();
-
-            services.AddRefitClient<IPokeApi>(new RefitSettings()
-            {
-                ContentSerializer = new NewtonsoftJsonContentSerializer(new JsonSerializerSettings())
-            }).ConfigureHttpClient(c => c.BaseAddress = new Uri(Configuration.GetSection("ExternalApis:PokeApiBaseUrl").Value));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

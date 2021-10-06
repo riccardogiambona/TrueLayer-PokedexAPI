@@ -250,5 +250,17 @@ namespace PokeAPI.Views.Responses
 
         [JsonProperty("varieties")]
         public List<Variety> Varieties { get; set; }
+
+        [JsonProperty("description")]
+        public string Description
+        {
+            get
+            {
+                if (FlavorTextEntries == null || FlavorTextEntries.Count == 0)
+                    return null;
+
+                return FlavorTextEntries.Find(r => r.Language?.Name == "en")?.FlavorText;
+            }
+        }
     }
 }
