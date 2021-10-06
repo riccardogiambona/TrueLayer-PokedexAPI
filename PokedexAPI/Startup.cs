@@ -11,6 +11,7 @@ using PokeAPI.Views.Responses;
 using PokeAPI.Interfaces;
 using Newtonsoft.Json;
 using FunTranslationsAPI.Interfaces;
+using Domain.Api.Errors;
 
 namespace PokedexAPI
 {
@@ -26,6 +27,11 @@ namespace PokedexAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new ErrorHandlingFilter());
+            });
+
             var mapperConfig = GetMapperConfiguration();
             var mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);

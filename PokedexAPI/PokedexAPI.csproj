@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
     <ProjectReference Include="..\FunTranslationsAPI\FunTranslationsAPI.csproj" />
     <ProjectReference Include="..\PokeApi\PokeAPI.csproj" />
   </ItemGroup>
