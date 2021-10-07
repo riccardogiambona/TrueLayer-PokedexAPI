@@ -9,9 +9,10 @@ To develop this APIs the following components are required:
 
 ## Project Structure
 1) PokedexAPI: The Web API project that exposes the requested APIs
-2) PokeAPI: The API project that interacts with the https://pokeapi.co/ APIs
-3) FunTranslationsAPI: The API project that interacts with the https://funtranslations.com/ APIs
-4) Domain: The project that contains generic logic that can be used between projects. For now it contains only the API error handling, but in a production environment it can be used between several APIs
+2) PokedexAPITests: The xUnit project that contains all the unit tests to perform on the implemented APIs
+3) PokeAPI: The API project that interacts with the https://pokeapi.co/ APIs
+4) FunTranslationsAPI: The API project that interacts with the https://funtranslations.com/ APIs
+5) Domain: The project that contains generic logic that can be used between projects. For now it contains only the API error handling, but in a production environment it can be used between several APIs
 
 ## Production Environment Changes
 The followings are the changes that I would make if this project would go to a production environment
