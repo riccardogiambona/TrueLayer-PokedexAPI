@@ -28,6 +28,7 @@ namespace PokedexAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Adds the logic to handle in a uniform way the exceptions raised by the API
             services.AddMvc(options =>
             {
                 options.Filters.Add(new ErrorHandlingFilter());
@@ -39,6 +40,7 @@ namespace PokedexAPI
             services.AddControllers()
                 .AddNewtonsoftJson();
 
+            //Adds refit clients
             var refitSettings = new RefitSettings()
             {
                 ContentSerializer = new NewtonsoftJsonContentSerializer(new JsonSerializerSettings())

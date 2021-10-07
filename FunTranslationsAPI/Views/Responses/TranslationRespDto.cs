@@ -23,6 +23,9 @@ namespace FunTranslationsAPI.Views.Responses
         public string Translated { get; set; }
     }
 
+    /// <summary>
+    /// The generic response body of a translated text
+    /// </summary>
     public class TranslationRespDto
     {
         [JsonProperty("success")]

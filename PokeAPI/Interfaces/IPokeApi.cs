@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace PokeAPI.Interfaces
 {
+    /// <summary>
+    /// The Refit interface that contains all the used PokeAPI methods
+    /// </summary>
     public interface IPokeApi
     {
         [Get("/pokemon-species/{name}")]

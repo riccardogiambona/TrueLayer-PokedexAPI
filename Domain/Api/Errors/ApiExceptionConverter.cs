@@ -9,7 +9,8 @@ namespace Domain.Api.Errors
 {
     /// <summary>
     /// This class converts exceptions
-    /// that can occour in api controllers to dtos
+    /// that can occur in API controllers to Dtos
+    /// to have a unique error structure for all APIs in case an exception occurs 
     /// </summary>
     public class ApiExceptionConverter
     {

@@ -31,6 +31,8 @@ namespace PokedexAPI.Controllers
         [HttpGet("{name}")]
         public async Task<PokemonInfoRespDto> GetPokemonInfo(string name)
         {
+            //Note: For error management see the ErrorHandlingFilter in the Domain project 
+
             var pokeApiResp = await pokeApi.GetPokemonSpeciesByNameAsync(name);           
             return mapper.Map<PokemonInfoRespDto>(pokeApiResp);
         }
@@ -38,6 +40,8 @@ namespace PokedexAPI.Controllers
         [HttpGet("translated/{name}")]
         public async Task<PokemonInfoRespDto> GetTranslatedPokemonInfo(string name)
         {
+            //Note: For error management see the ErrorHandlingFilter in the Domain project 
+
             var pokeApiResp = await pokeApi.GetPokemonSpeciesByNameAsync(name);
 
             //if description is empty or null, there's nothing to translate
@@ -73,10 +77,10 @@ namespace PokedexAPI.Controllers
                 switch(reqTranslation)
                 {
                     case RequiredTranslationType.YODA:
-                        return (await translationsApi.GetYodaTranslation(translationReq))?
+                        return (await translationsApi.GetYodaTranslationAsync(translationReq))?
                             .Contents?.Translated;
                     case RequiredTranslationType.SHAKESPEARE:
-                        return (await translationsApi.GetShakespeareTranslation(translationReq))?
+                        return (await translationsApi.GetShakespeareTranslationAsync(translationReq))?
                            .Contents?.Translated;
                 }
             }
@@ -85,7 +89,7 @@ namespace PokedexAPI.Controllers
             }
 
             //If I arrive here, it's beacause an error occurred during 
-            //translation or the required translation is not YODA or SHAKESPEAR
+            //translation or the required translation is not YODA or SHAKESPEARE
             //(it could happen if a new value is added to the enum, but the cases in the switch are not 
             //updated)
             return description;

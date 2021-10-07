@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace FunTranslationsAPI.Interfaces
 {
+    /// <summary>
+    /// The Refit interface that contains all the used Translations API methods
+    /// </summary>
     public interface ITranslationsApi
     {
         [Post("/translate/shakespeare")]
-        Task<TranslationRespDto> GetShakespeareTranslation([Body] TranslationReqDto translationReq);
+        Task<TranslationRespDto> GetShakespeareTranslationAsync([Body] TranslationReqDto translationReq);
 
         [Post("/translate/yoda")]
-        Task<TranslationRespDto> GetYodaTranslation([Body] TranslationReqDto translationReq);
+        Task<TranslationRespDto> GetYodaTranslationAsync([Body] TranslationReqDto translationReq);
     }
 }

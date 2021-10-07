@@ -5,6 +5,9 @@ using System.Text;
 
 namespace FunTranslationsAPI.Views.Requests
 {
+    /// <summary>
+    /// The generic request body to translate a text
+    /// </summary>
     public class TranslationReqDto
     {
         [JsonProperty("text")]

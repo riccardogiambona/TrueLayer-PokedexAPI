@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Api.Views
 {
+    /// <summary>
+    /// The generic error response
+    /// </summary>
     public class ErrorDto
     {
         [JsonProperty("name")]

@@ -9,5 +9,6 @@ namespace PokedexAPI.Enums
     {
         YODA,
         SHAKESPEARE,
+        //Add other needed translations
     }
 }

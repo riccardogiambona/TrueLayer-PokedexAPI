@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace PokedexAPI.Utils
 {
+    /// <summary>
+    /// The utility to create the mappings for all the mappers used in PokedexAPI
+    /// </summary>
     public class MappingUtils
     {
         public static MapperConfiguration GetMapperConfiguration()

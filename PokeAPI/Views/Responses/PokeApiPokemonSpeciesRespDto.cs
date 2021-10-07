@@ -168,6 +168,9 @@ namespace PokeAPI.Views.Responses
         public Pokemon Pokemon { get; set; }
     }
 
+    /// <summary>
+    /// The response of the pokemon info API
+    /// </summary>
     public class PokeApiPokemonSpeciesRespDto
     {
         [JsonProperty("base_happiness")]
